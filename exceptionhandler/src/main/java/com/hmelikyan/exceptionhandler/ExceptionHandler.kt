@@ -10,9 +10,9 @@ import kotlin.system.exitProcess
 
 internal object ExceptionHandler {
 
-    lateinit var mApplication: Application
+    lateinit var mApplication: HandlerApplication
 
-    fun init(application: Application) {
+    fun init(application: HandlerApplication) {
         mApplication = application
         if (getApplicationKey() == null)
             throw NullPointerException("Menu Group key not found")

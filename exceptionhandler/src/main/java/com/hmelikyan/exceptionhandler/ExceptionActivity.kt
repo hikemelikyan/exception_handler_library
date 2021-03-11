@@ -19,8 +19,7 @@ class ExceptionActivity : AppCompatActivity() {
         mBinding.restartApplication.setOnClickListener {
             val appPackage = intent.getStringExtra("packageName")
             if (appPackage != null) {
-                val launchIntent = ExceptionHandler.mApplication.packageManager.getLaunchIntentForPackage(appPackage)
-                startActivity(launchIntent)
+                ExceptionHandler.mApplication.restartApplication()
             }
         }
 

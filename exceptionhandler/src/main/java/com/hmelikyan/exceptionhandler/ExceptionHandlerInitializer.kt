@@ -1,8 +1,6 @@
 package com.hmelikyan.exceptionhandler
 
-import android.app.Application
-
-fun startExceptionHandler(application: Application) {
+fun startExceptionHandler(application: HandlerApplication) {
     ExceptionHandler.init(application)
     application.registerActivityLifecycleCallbacks(CrashReporterActivityLifecycleCallback())
 }

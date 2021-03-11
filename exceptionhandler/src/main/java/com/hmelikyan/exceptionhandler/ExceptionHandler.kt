@@ -23,6 +23,7 @@ internal object ExceptionHandler {
         Thread.setDefaultUncaughtExceptionHandler { thread, throwable ->
             val model = ErrorDomain(osVersion = Build.VERSION.SDK_INT).apply {
                 key = getApplicationKey()
+                applicationPackage = mApplication.packageName
                 text = throwable.message
                 manufacture = Build.MANUFACTURER
                 deviceModel = Build.MODEL

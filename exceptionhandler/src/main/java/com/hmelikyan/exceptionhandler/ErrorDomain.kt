@@ -9,6 +9,7 @@ import java.lang.reflect.Field
 
 @Parcelize
 data class ErrorDomain(
+    var applicationPackage: String? = null,
     var key: String? = null,
     var text: String? = null,
     var className: String? = null,
@@ -21,12 +22,15 @@ data class ErrorDomain(
     fun requiredMessage() {
         val sb = StringBuilder()
         key?.let {
-            sb.append("AppType: $it \n")
+            sb.append("Application Type: $it \n")
+        }
+        applicationPackage?.let {
+            sb.append("Application Package: $it \n")
         }
         val fields: Array<Field> = VERSION_CODES::class.java.fields
         val osName: String = fields[Build.VERSION.SDK_INT].name
 
-        sb.append("OsVersion: $osVersion , OsName: $osName \n")
+        sb.append("OS Version: $osVersion , OS Name: $osName \n")
         manufacture?.let {
             sb.append("Device Info: $it ,")
         }

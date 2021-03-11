@@ -10,7 +10,7 @@ import kotlin.system.exitProcess
 
 internal object ExceptionHandler {
 
-    private lateinit var mApplication: Application
+    lateinit var mApplication: Application
 
     fun init(application: Application) {
         mApplication = application

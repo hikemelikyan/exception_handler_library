@@ -6,7 +6,9 @@
         <package android:name="com.hmelikyan.exceptionhandlerdemo" />
     </queries>
     <application>
-        <activity android:name=".ExceptionActivity"/>
+        <activity
+            android:name=".ExceptionActivity"
+            android:theme="@style/NoActionBar" />
     </application>
 
 </manifest>

@@ -1,6 +1,5 @@
 package com.hmelikyan.exceptionhandler
 
-import android.app.Application
 import android.content.Intent
 import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
@@ -23,6 +22,7 @@ internal object ExceptionHandler {
         Thread.setDefaultUncaughtExceptionHandler { thread, throwable ->
             val model = ErrorDomain(osVersion = Build.VERSION.SDK_INT).apply {
                 key = getApplicationKey()
+                threadName = thread.name
                 applicationPackage = mApplication.packageName
                 text = throwable.message
                 manufacture = Build.MANUFACTURER
@@ -33,6 +33,7 @@ internal object ExceptionHandler {
             if (!stackTrace.isNullOrEmpty()) {
                 model.className = stackTrace[0]?.className
                 model.crashLine = stackTrace[0]?.lineNumber ?: 0
+                model.stackTrace = throwable.cause?.stackTraceToString()
             }
             val intent = Intent(mApplication, ExceptionActivity::class.java)
             intent.putExtra("model", model)

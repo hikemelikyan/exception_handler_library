@@ -27,7 +27,7 @@ class ExceptionActivity : AppCompatActivity() {
 
         val iService = RestService().getRetrofitInstance()
 
-        val call = iService.loadChanges(model?.apply { requiredMessage() })
+        val call = iService.loadChanges(model?.apply { toString() })
 
         call?.enqueue(object : Callback<Any?> {
             override fun onResponse(call: Call<Any?>, response: Response<Any?>) {}

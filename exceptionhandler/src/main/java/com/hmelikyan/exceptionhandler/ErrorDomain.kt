@@ -12,14 +12,16 @@ data class ErrorDomain(
     var applicationPackage: String? = null,
     var key: String? = null,
     var text: String? = null,
+    var stackTrace:String? = null,
     var className: String? = null,
+    var threadName:String? = null,
     var crashLine: Int = 0,
     var osVersion: Int,
     var manufacture: String? = null,
     var deviceModel: String? = null
 ) : Parcelable {
 
-    fun requiredMessage() {
+    override fun toString(): String {
         val sb = StringBuilder()
         key?.let {
             sb.append("Application Type: $it \n")
@@ -37,13 +39,20 @@ data class ErrorDomain(
         deviceModel?.let {
             sb.append("$it \n")
         }
+        threadName?.let {
+            sb.append("Thread: $it \n")
+        }
         className?.let {
-            sb.append("Classname: $className ,line $crashLine \n")
+            sb.append("CrashLine: $className ,line $crashLine \n")
         }
         text?.let {
-            sb.append("Cause: $it")
+            sb.append("Cause: $it \n")
+        }
+        stackTrace?.let {
+            sb.append("StackTrace: $it")
         }
         text = sb.toString()
+        return sb.toString()
     }
 
 }
